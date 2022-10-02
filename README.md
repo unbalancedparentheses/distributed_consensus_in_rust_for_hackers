@@ -4,46 +4,41 @@
 data-intensive ch. 8
 db internals ch. 8
 
-### sequential, concurrent, parallel and distributed computing
+### sequential, concurrent, parallel, distributed
+#### sequential computing
+[CODE SAMPLE]
 
-[CODE SAMPLES HERE]
+#### concurrent computing
+[CODE SAMPLE]
+
+side notes:
+- problems that arise in concurrent programming (deadlocks, race conditions, code complexity, difficulty to test)
+- briefly describe concurrent programming models
+
+#### parallel computing
+[CODE SAMPLE]
+
+#### distributed computing
+[CODE SAMPLE]
+
+reasons to distribute: performance (speed, scalability of resources, cost-efficiency), reliability
+
+When your program is a local text editor, your users don't expect it to continue running if their laptop runs out of battery or the hard drive crashes. As a programmer, you can safely ignore those scenarios. But if your program is a web application, it's not acceptable to go offline if there's a faulty hard drive in some datacenter or a power outage in in North Virginia. Web applications need to serve thousands or millions of users so it's not cost-effective to run them on a single host; you need multiple servers and with more components the probability of faulty hardware increases. What's more, as you'll see in the next section, networks are even less reliable than computers: messages get lost or duplicated, hosts become unreachable. The bottom line is that in distributed setups you need to assume things are going to break, even in unexpected ways, and design systems that continue working even in the presence of errors.
 
 ### fallacies of distributed computing
 - original ones from deutsch,
   - emphasis in unreliable networks
+  - there's some concrete examples and data in data-intensive book, eg. about failures in cloud environments
+  - see also https://queue.acm.org/detail.cfm?id=2655736
+- pitfall: a remote call is just like a funcion call.
+  - see "A Note on Distributed Computing", Waldo
 - unreliable clocks
 - nodes die / expect failures
-- local/remote execution waldo note on distributed computing
 - (maybe) end to end system design
 
 https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
 learn erlang ch. 26
 soft arch ch 9
-
-### Modeling distributed systems
-
-(this is easier to introduce next to failures, but it may be too theoretic for the first chapter. alternatively, it could be moved to the consensus intro chapter, closer to where it's used)
-
-#### failure models
-pick one of:
-crash-stop / crash-recovery / byzantine (data-intensive)
-crash / omission / byzantine (db internals)
-https://alvaro-videla.com/2013/12/failure-modes-in-distributed-systems.html
-http://cs.boisestate.edu/~amit/teaching/555/handouts/fault-tolerance-handout.pdf
-
-note: omissions includes network paritions as used in CAP
-
-#### synchrony models
-synchronous, asynchronous, partially synchronous
-https://decentralizedthoughts.github.io/2019-06-01-2019-5-31-models/
-
-##### FLP impossibility
-how it can be worked around in practice
-
-#### Mapping to the real world
-data-intensive apps has a good section about this
-
-models help not only to understand the terms in which algorithms are stated and where they are applicable, but also to reason about and make trade-off analysis in real systems
 
 ### Conclusions
 ### References
@@ -84,7 +79,7 @@ give precise meaning to terms: partition compared with failures from ch 1; consi
 (maybe) minor side note about relation between FLP and CAP
 explain what's its actual value in tradeoff analysis for system design
 
-#### distributed transactions/2-phase commit 
+#### distributed transactions/2-phase commit
 
 https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/
 
@@ -98,6 +93,7 @@ for fault tolerance we need more sophisticated consensus protocols, introduced n
 ### Conclusions
 ### References
 
+
 ## 3. Introduction to Consensus
 data-intensive ch. 8, 9
 db internals ch. 8
@@ -106,6 +102,33 @@ https://decentralizedthoughts.github.io/2019-06-27-defining-consensus/
 - definition
 - relation to consistency: consensus can be a way to implement linearizability in a system
 - different types of consensus based on their fault tolerance
+
+### Modeling distributed systems
+
+#### failure models
+pick one of:
+crash-stop / crash-recovery / byzantine (data-intensive)
+crash / omission / byzantine (db internals)
+https://alvaro-videla.com/2013/12/failure-modes-in-distributed-systems.html
+http://cs.boisestate.edu/~amit/teaching/555/handouts/fault-tolerance-handout.pdf
+
+note: omissions includes network paritions as used in CAP
+
+#### synchrony models
+synchronous, asynchronous, partially synchronous
+https://decentralizedthoughts.github.io/2019-06-01-2019-5-31-models/
+
+show practical examples of each synchrony model
+
+##### FLP impossibility
+how it can be worked around in practice
+randomization, failure detectors (see chandra paper), partial synchrony
+provide examples and trade-offs
+
+#### Mapping to the real world
+data-intensive apps has a good section about this
+
+models help not only to understand the terms in which algorithms are stated and where they are applicable, but also to reason about and make trade-off analysis in real systems
 
 ### Atomic broadcast
 - definition
@@ -117,8 +140,7 @@ this relation is well covered in db internals book and in the tendermint thesis
 here or somewhere else, explain how it maps to other classification of properties, eg.: agreement, integrity, validity, termination
 termination = fault-tolerance
 
-### State-machine replication
-(maybe better in replication chapter?)
+### Replicated State-machines
 most algorithms are described in terms of replicated state-machines, explain them here
 
 https://decentralizedthoughts.github.io/2019-10-15-consensus-for-state-machine-replication/
