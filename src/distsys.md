@@ -15,6 +15,10 @@ side notes:
 - problems that arise in concurrent programming (deadlocks, race conditions, code complexity, difficulty to test)
 - briefly describe concurrent programming models
 
+#### async programming
+
+[CODE SAMPLE]
+
 #### parallel computing
 [CODE SAMPLE]
 
@@ -25,25 +29,10 @@ reasons to distribute: performance (speed, scalability of resources, cost-effici
 
 When your program is a local text editor, your users don't expect it to continue running if their laptop runs out of battery or the hard drive crashes. As a programmer, you can safely ignore those scenarios. But if your program is a web application, it's not acceptable to go offline if there's a faulty hard drive in some datacenter or a power outage in in North Virginia. Web applications need to serve thousands or millions of users so it's not cost-effective to run them on a single host; you need multiple servers and with more components the probability of faulty hardware increases. What's more, as you'll see in the next section, networks are even less reliable than computers: messages get lost or duplicated, hosts become unreachable. The bottom line is that in distributed setups you need to assume things are going to break, even in unexpected ways, and design systems that continue working even in the presence of errors.
 
-### fallacies of distributed computing
-- original ones from deutsch,
-  - emphasis in unreliable networks
-  - there's some concrete examples and data in data-intensive book, eg. about failures in cloud environments
-  - see also https://queue.acm.org/detail.cfm?id=2655736
-- pitfall: a remote call is just like a funcion call.
-  - see "A Note on Distributed Computing", Waldo
-- unreliable clocks
-- nodes die / expect failures
-- (maybe) end to end system design
-
-https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
-learn erlang ch. 26
-soft arch ch 9
-
 ### Conclusions
 ### References
 
-## 2. Replication and Consistency
+## Replication and Consistency
 http://book.mixu.net/distsys/replication.html
 db internals ch 11, 13
 data-intensive ch 9
@@ -62,6 +51,7 @@ this is covered in data-intesive apps book
 #### primary/backup replication
 simplest form of replication
 explained in distsys fun and profit
+https://decentralizedthoughts.github.io/2019-11-01-primary-backup/
 can be used as example of weak consistency to intrduce the next section?
 
 [CODE SAMPLES HERE]
@@ -105,6 +95,11 @@ https://decentralizedthoughts.github.io/2019-06-27-defining-consensus/
 
 ### Modeling distributed systems
 
+- review: [Consensus in the Presence of Partial Synchrony](https://groups.csail.mit.edu/tds/papers/Lynch/jacm88.pdf)  (defines failure and synchrony models, is used by modern BFT)
+- [Unreliable Failure Detectors for Reliable Distributed Systems](https://www.cs.utexas.edu/~lorenzo/corsi/cs380d/papers/p225-chandra.pdf)
+
+- https://decentralizedthoughts.github.io/2021-10-29-consensus-cheat-sheet/
+
 #### failure models
 pick one of:
 crash-stop / crash-recovery / byzantine (data-intensive)
@@ -140,7 +135,7 @@ this relation is well covered in db internals book and in the tendermint thesis
 here or somewhere else, explain how it maps to other classification of properties, eg.: agreement, integrity, validity, termination
 termination = fault-tolerance
 
-### Replicated State-machines
+## Replicated State-machines
 most algorithms are described in terms of replicated state-machines, explain them here
 
 https://decentralizedthoughts.github.io/2019-10-15-consensus-for-state-machine-replication/
@@ -148,6 +143,15 @@ schneider paper
 (maybe) lampson paper
 
 [CODE SAMPLES HERE]
+
+#### From primary/backup to CFT consensus
+these posts show how to go from primary backup to fault tolerant consensus
+we may want to follow a similar route, for example introducing the lock-commit as an intermediate step before the more sophisticated algorithms (raft, pbft, etc)
+this maybe a bit redundant with two phase commit, though. perhaps we can do this instead of 2pc earlier
+
+https://decentralizedthoughts.github.io/2020-09-13-synchronous-consensus-omission-faults/
+https://decentralizedthoughts.github.io/2020-11-29-the-lock-commit-paradigm/
+https://decentralizedthoughts.github.io/2020-11-30-the-lock-commit-paradigm-multi-shot-and-mixed-faults/
 
 ### Conclusions
 ### References
@@ -158,11 +162,13 @@ explain raft in detail, the rest briefly
 http://thesecretlivesofdata.com/raft/ -> would be good to have more like this for other algorithms
 https://github.com/ongardie/raft.tla/blob/master/raft.tla
 raft paper
+paxos made live https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/paper2-1.pdf (chubby. covers issues when going to production)
+
 
 - paxos
 - (maybe) Viewstamped Replication
 - zab
-- (maybe) chubby
+- chubby
 - raft
   - leader election
   - log replication
@@ -187,6 +193,12 @@ before bitcoin BFT was a theoretical problem and the solutions impractical, but 
 ## 6. Proof of Stake consensus protocols
 real-world crypto ch. 12
 
+### streamlet
+https://decentralizedthoughts.github.io/2020-05-14-streamlet/
+review the paper
+this is a "textbook" protocol, good for pedagogical value so it's an obvious candidate to introduce some topics
+TODO: the question is whether it makes sense to bring it up here, after going through raft and introducing BFT. most likely it's easier to do it earlier.
+
 ### Tendermint
 ### Diem
 previously Libra, based on hotstuff
@@ -198,24 +210,10 @@ Byzantine Agreement, Made Trivial
 ### DAGs
 https://decentralizedthoughts.github.io/2022-06-28-DAG-meets-BFT/
 https://www.paradigm.xyz/2022/07/experiment-narwhal-bullshark-cosmos-stack
+[Bullshark: DAG BFT Protocols Made Practical](https://arxiv.org/pdf/2201.05677.pdf)
 
 ### Conclusions
 ### References
 
 ## Appendix: summary of consensus algorithms
 make a table with each algorithm: synchrony and failure models it assumes, adversary threshold, performance, code complexity
-
-## Appendix: TLA?
-
-# Notes/TODO
-
-- review: [Consensus in the Presence of Partial Synchrony](https://groups.csail.mit.edu/tds/papers/Lynch/jacm88.pdf)  (defines failure and synchrony models, is used by modern BFT)
-- [the tendermint thesis](https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf) does a long introduction and comparison to other protocols, can be used as guide for this
-- the [raft thesis](https://www.web.stanford.edu/~ouster/cgi-bin/papers/OngaroPhD.pdf) is similar
-- [Unreliable Failure Detectors for Reliable Distributed Systems](https://www.cs.utexas.edu/~lorenzo/corsi/cs380d/papers/p225-chandra.pdf)
-
-# references
-
-- https://pontem.network/posts/aptosbft-all-you-need-to-know-about-the-bft-consensus-in-aptos
-- https://dl.acm.org/doi/10.1145/3293611.3331591
-- [Bullshark: DAG BFT Protocols Made Practical](https://arxiv.org/pdf/2201.05677.pdf)
