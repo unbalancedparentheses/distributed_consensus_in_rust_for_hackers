@@ -5,3 +5,5 @@
 - the [raft thesis](https://www.web.stanford.edu/~ouster/cgi-bin/papers/OngaroPhD.pdf) is similar
 
 - https://martinfowler.com/articles/patterns-of-distributed-systems/
+- http://elaineshi.com/docs/blockchain-book.pdf
+- https://heidihoward.github.io/distributed-consensus-reading-list/

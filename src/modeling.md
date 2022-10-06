@@ -26,6 +26,10 @@ how it can be worked around in practice
 randomization, failure detectors (see chandra paper), partial synchrony
 provide examples and trade-offs
 
+## adversary
+https://decentralizedthoughts.github.io/2019-06-07-modeling-the-adversary/
+https://decentralizedthoughts.github.io/2019-06-17-the-threshold-adversary/
+
 ## Mapping to the real world
 data-intensive apps has a good section about this
 
