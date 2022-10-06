@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Index</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="preface.html">Preface</a></li><li class="chapter-item expanded "><a href="distsys.html"><strong aria-hidden="true">1.</strong> A tour de force in distributed systems</a></li><li class="chapter-item expanded "><a href="failures.html"><strong aria-hidden="true">2.</strong> Living with failures</a></li><li class="chapter-item expanded "><a href="replication.html"><strong aria-hidden="true">3.</strong> Replication</a></li><li class="chapter-item expanded "><a href="consistency.html"><strong aria-hidden="true">4.</strong> Consistency</a></li><li class="chapter-item expanded "><a href="modeling.html"><strong aria-hidden="true">5.</strong> Modeling distributed systems</a></li><li class="chapter-item expanded "><a href="machines.html"><strong aria-hidden="true">6.</strong> Replicated state machines</a></li><li class="chapter-item expanded "><a href="consensus.html"><strong aria-hidden="true">7.</strong> Introduction to Consensus</a></li><li class="chapter-item expanded "><a href="cft.html"><strong aria-hidden="true">8.</strong> Crash fault-tolerant (CFT) consensus</a></li><li class="chapter-item expanded "><a href="bft.html"><strong aria-hidden="true">9.</strong> Byzantine fault-tolerant (BFT) consensus</a></li><li class="chapter-item expanded "><a href="bitcoin.html"><strong aria-hidden="true">10.</strong> Bitcoin and permissionless consensus</a></li><li class="chapter-item expanded "><a href="pos.html"><strong aria-hidden="true">11.</strong> Proof of Stake consensus</a></li><li class="chapter-item expanded "><a href="dag.html"><strong aria-hidden="true">12.</strong> Directed acyclic graph (DAG) consensus</a></li><li class="chapter-item expanded affix "><a href="algorithms.html">Appendix: Summary of algorithms</a></li><li class="chapter-item expanded affix "><div>Appendix: TLA?</div></li><li class="chapter-item expanded affix "><a href="references.html">References and notes</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,8 +137,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="distributed-consensus-in-rust-for-hackers"><a class="header" href="#distributed-consensus-in-rust-for-hackers">Distributed consensus in Rust for Hackers</a></h1>
-<h2 id="1-a-tour-de-force-in-distributed-systems"><a class="header" href="#1-a-tour-de-force-in-distributed-systems">1. A tour de force in distributed systems</a></h2>
+                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-tour-de-force-in-distributed-systems"><a class="header" href="#a-tour-de-force-in-distributed-systems">A tour de force in distributed systems</a></h1>
 <p>data-intensive ch. 8
 db internals ch. 8</p>
 <h3 id="sequential-concurrent-parallel-distributed"><a class="header" href="#sequential-concurrent-parallel-distributed">sequential, concurrent, parallel, distributed</a></h3>
@@ -151,21 +151,27 @@ db internals ch. 8</p>
 <li>problems that arise in concurrent programming (deadlocks, race conditions, code complexity, difficulty to test)</li>
 <li>briefly describe concurrent programming models</li>
 </ul>
+<h4 id="async-programming"><a class="header" href="#async-programming">async programming</a></h4>
+<p>[CODE SAMPLE]</p>
 <h4 id="parallel-computing"><a class="header" href="#parallel-computing">parallel computing</a></h4>
 <p>[CODE SAMPLE]</p>
 <h4 id="distributed-computing"><a class="header" href="#distributed-computing">distributed computing</a></h4>
 <p>[CODE SAMPLE]</p>
 <p>reasons to distribute: performance (speed, scalability of resources, cost-efficiency), reliability</p>
 <p>When your program is a local text editor, your users don't expect it to continue running if their laptop runs out of battery or the hard drive crashes. As a programmer, you can safely ignore those scenarios. But if your program is a web application, it's not acceptable to go offline if there's a faulty hard drive in some datacenter or a power outage in in North Virginia. Web applications need to serve thousands or millions of users so it's not cost-effective to run them on a single host; you need multiple servers and with more components the probability of faulty hardware increases. What's more, as you'll see in the next section, networks are even less reliable than computers: messages get lost or duplicated, hosts become unreachable. The bottom line is that in distributed setups you need to assume things are going to break, even in unexpected ways, and design systems that continue working even in the presence of errors.</p>
-<h3 id="fallacies-of-distributed-computing"><a class="header" href="#fallacies-of-distributed-computing">fallacies of distributed computing</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="living-with-failure"><a class="header" href="#living-with-failure">Living with failure</a></h1>
+<h2 id="fallacies-of-distributed-computing"><a class="header" href="#fallacies-of-distributed-computing">fallacies of distributed computing</a></h2>
 <ul>
 <li>original ones from deutsch,
 <ul>
 <li>emphasis in unreliable networks</li>
 <li>there's some concrete examples and data in data-intensive book, eg. about failures in cloud environments</li>
-<li>see also https://queue.acm.org/detail.cfm?id=2655736</li>
+<li>see also Bailis/Kingsbury article</li>
 </ul>
 </li>
+</ul>
+<h2 id="other-problems"><a class="header" href="#other-problems">other problems</a></h2>
+<ul>
 <li>pitfall: a remote call is just like a funcion call.
 <ul>
 <li>see &quot;A Note on Distributed Computing&quot;, Waldo</li>
@@ -175,18 +181,30 @@ db internals ch. 8</p>
 <li>nodes die / expect failures</li>
 <li>(maybe) end to end system design</li>
 </ul>
-<p>https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
-learn erlang ch. 26
-soft arch ch 9</p>
-<h3 id="conclusions"><a class="header" href="#conclusions">Conclusions</a></h3>
-<h3 id="references"><a class="header" href="#references">References</a></h3>
-<h2 id="2-replication-and-consistency"><a class="header" href="#2-replication-and-consistency">2. Replication and Consistency</a></h2>
+<h2 id="conclusions"><a class="header" href="#conclusions">Conclusions</a></h2>
+<p>for theory, connect with models chapter for a more formal treatment, required for consensus algorithms
+for practice: let it crash philosophy from erlang and related papers</p>
+<h2 id="references"><a class="header" href="#references">References</a></h2>
+<p>TODO: review these references, incorporate what's useful, remove the rest</p>
+<ul>
+<li>The Trouble with Distributed Systems - Designing Data-Intensive Applications chapter 8</li>
+<li>Distributed Systems Intoroduction and Overview - Database Internals chapter 8</li>
+<li><a href="https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing">Fallacies of distributed computing</a></li>
+<li><a href="https://learnyousomeerlang.com/distribunomicon">Distribunomicon - Learn you some Erlang for great good</a></li>
+<li><a href="https://queue.acm.org/detail.cfm?id=2655736">The network is reliable</a></li>
+<li><a href="https://erlang.org/download/armstrong_thesis_2003.pdf">Making reliable distributed systems in the presence of software errors</a></li>
+<li><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2002/CSD-02-1175.pdf">Recovery Oriented Computing (ROC): Motivation, Definition, Techniques, and Case Studies</a></li>
+<li><a href="https://research.cs.wisc.edu/areas/os/ReadingGroup/os-old/Papers/HotOSIX/Candea-CrashOnlySoftware.pdf">Crash-Only Software</a></li>
+<li><a href="https://scholar.harvard.edu/files/waldo/files/waldo-94.pdf">A Note on Distributed Computing</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="replication"><a class="header" href="#replication">Replication</a></h1>
 <p>http://book.mixu.net/distsys/replication.html
 db internals ch 11, 13
 data-intensive ch 9</p>
-<p>touch briefly, just the necessary to move to the consensus problem in next chapter
-show how to go from single node, to single leader, to fault tolerance and the options and trade-off of different methods</p>
-<h3 id="replication"><a class="header" href="#replication">Replication</a></h3>
+<p>touch briefly, just the necessary to move to cons problem in next chapter
+show how to go from single node, to single leader, to fault tolerance and the options and trade-off of different methods
+TODO: see how to best distribute between replication and consistency chapters</p>
+<h2 id="replication-1"><a class="header" href="#replication-1">Replication</a></h2>
 <p>this is covered in data-intesive apps book</p>
 <ul>
 <li>definition</li>
@@ -194,33 +212,88 @@ show how to go from single node, to single leader, to fault tolerance and the op
 <li>touch briefly on types of replication, and give examples of implementations of each: leader/followers, multi-leader, leaderless (e.g dynamo)</li>
 <li>having redundancy introduces the problem of keeping replicas consistent with each other</li>
 </ul>
-<h4 id="primarybackup-replication"><a class="header" href="#primarybackup-replication">primary/backup replication</a></h4>
+<h2 id="primarybackup-replication"><a class="header" href="#primarybackup-replication">primary/backup replication</a></h2>
 <p>simplest form of replication
 explained in distsys fun and profit
+https://decentralizedthoughts.github.io/2019-11-01-primary-backup/
 can be used as example of weak consistency to intrduce the next section?</p>
 <p>[CODE SAMPLES HERE]</p>
-<h3 id="consistency"><a class="header" href="#consistency">Consistency</a></h3>
+<h3 id="conclusions-1"><a class="header" href="#conclusions-1">Conclusions</a></h3>
+<h3 id="references-1"><a class="header" href="#references-1">References</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="consistency"><a class="header" href="#consistency">Consistency</a></h1>
 <p>this is covered in database internals book</p>
 <ul>
 <li>definition</li>
 <li>consistency models: linearizability, sequential, causal, eventual (mention strong eventual/crdts here)</li>
 <li>add a diagram with stronger-&gt;weaker and a tree of models/submodels and systems that implement it</li>
 </ul>
-<h4 id="cap-and-its-problems"><a class="header" href="#cap-and-its-problems">cap (and its problems)</a></h4>
+<h2 id="cap-and-its-problems"><a class="header" href="#cap-and-its-problems">cap (and its problems)</a></h2>
 <p>summarize conjecture
 explain problems of the theorem
 give precise meaning to terms: partition compared with failures from ch 1; consistency compared with models from previous section.
 (maybe) minor side note about relation between FLP and CAP
 explain what's its actual value in tradeoff analysis for system design</p>
-<h4 id="distributed-transactions2-phase-commit"><a class="header" href="#distributed-transactions2-phase-commit">distributed transactions/2-phase commit</a></h4>
+<h2 id="distributed-transactions2-phase-commit"><a class="header" href="#distributed-transactions2-phase-commit">distributed transactions/2-phase commit</a></h2>
+<p>TODO: see basic consensus implementations from next chapters, may not be the best idea to introduce this here</p>
 <p>https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/</p>
 <p>[CODE SAMPLES HERE]</p>
 <p>2PC can be thought of a solution to consensus, but it's not an interesting one because it's not fault tolerant (cannot tolerate crashes of the coordinator)
 (it can also be used to solve a different problem than consensus, i.e.  saving different things in different nodes vs replicating the same value in consensus, see eg spanner that uses both 2pc and paxos.)
 for fault tolerance we need more sophisticated consensus protocols, introduced next chapter</p>
-<h3 id="conclusions-1"><a class="header" href="#conclusions-1">Conclusions</a></h3>
-<h3 id="references-1"><a class="header" href="#references-1">References</a></h3>
-<h2 id="3-introduction-to-consensus"><a class="header" href="#3-introduction-to-consensus">3. Introduction to Consensus</a></h2>
+<h2 id="conclusions-2"><a class="header" href="#conclusions-2">Conclusions</a></h2>
+<h2 id="references-2"><a class="header" href="#references-2">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="modeling-distributed-systems"><a class="header" href="#modeling-distributed-systems">Modeling distributed systems</a></h1>
+<ul>
+<li>
+<p>review: <a href="https://groups.csail.mit.edu/tds/papers/Lynch/jacm88.pdf">Consensus in the Presence of Partial Synchrony</a>  (defines failure and synchrony models, is used by modern BFT)</p>
+</li>
+<li>
+<p><a href="https://www.cs.utexas.edu/%7Elorenzo/corsi/cs380d/papers/p225-chandra.pdf">Unreliable Failure Detectors for Reliable Distributed Systems</a></p>
+</li>
+<li>
+<p>https://decentralizedthoughts.github.io/2021-10-29-consensus-cheat-sheet/</p>
+</li>
+</ul>
+<h2 id="failure-models"><a class="header" href="#failure-models">failure models</a></h2>
+<p>pick one of:
+crash-stop / crash-recovery / byzantine (data-intensive)
+crash / omission / byzantine (db internals)
+https://alvaro-videla.com/2013/12/failure-modes-in-distributed-systems.html
+http://cs.boisestate.edu/~amit/teaching/555/handouts/fault-tolerance-handout.pdf</p>
+<p>note: omissions includes network paritions as used in CAP</p>
+<h2 id="synchrony-models"><a class="header" href="#synchrony-models">synchrony models</a></h2>
+<p>synchronous, asynchronous, partially synchronous
+https://decentralizedthoughts.github.io/2019-06-01-2019-5-31-models/</p>
+<p>show practical examples of each synchrony model</p>
+<h3 id="flp-impossibility"><a class="header" href="#flp-impossibility">FLP impossibility</a></h3>
+<p>how it can be worked around in practice
+randomization, failure detectors (see chandra paper), partial synchrony
+provide examples and trade-offs</p>
+<h2 id="adversary"><a class="header" href="#adversary">adversary</a></h2>
+<p>https://decentralizedthoughts.github.io/2019-06-07-modeling-the-adversary/
+https://decentralizedthoughts.github.io/2019-06-17-the-threshold-adversary/</p>
+<h2 id="mapping-to-the-real-world"><a class="header" href="#mapping-to-the-real-world">Mapping to the real world</a></h2>
+<p>data-intensive apps has a good section about this</p>
+<p>models help not only to understand the terms in which algorithms are stated and where they are applicable, but also to reason about and make trade-off analysis in real systems</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="replicated-state-machines"><a class="header" href="#replicated-state-machines">Replicated state machines</a></h1>
+<p>most algorithms are described in terms of replicated state-machines, explain them here</p>
+<p>https://decentralizedthoughts.github.io/2019-10-15-consensus-for-state-machine-replication/
+schneider paper
+(maybe) lampson paper</p>
+<h2 id="definitions"><a class="header" href="#definitions">Definitions</a></h2>
+<h2 id="from-primarybackup-to-cft-consensus"><a class="header" href="#from-primarybackup-to-cft-consensus">From primary/backup to CFT consensus</a></h2>
+<p>these posts show how to go from primary backup to fault tolerant consensus
+we may want to follow a similar route, for example introducing the lock-commit as an intermediate step before the more sophisticated algorithms (raft, pbft, etc)
+https://decentralizedthoughts.github.io/2020-09-13-synchronous-consensus-omission-faults/
+https://decentralizedthoughts.github.io/2020-11-29-the-lock-commit-paradigm/
+https://decentralizedthoughts.github.io/2020-11-30-the-lock-commit-paradigm-multi-shot-and-mixed-faults/</p>
+<p>this maybe a bit redundant with two phase commit, though. perhaps we can do this instead of 2pc earlier
+also they are more difficult than streamlet, introduced later
+perhaps it's best to just rewrite the previous primary/backup implementation as a state machine instead of introducing the more complex algorithms</p>
+<p>[CODE SAMPLES HERE]</p>
+<h2 id="conclusions-3"><a class="header" href="#conclusions-3">Conclusions</a></h2>
+<h2 id="references-3"><a class="header" href="#references-3">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-consensus"><a class="header" href="#introduction-to-consensus">Introduction to Consensus</a></h1>
 <p>data-intensive ch. 8, 9
 db internals ch. 8
 https://decentralizedthoughts.github.io/2019-06-27-defining-consensus/</p>
@@ -229,100 +302,99 @@ https://decentralizedthoughts.github.io/2019-06-27-defining-consensus/</p>
 <li>relation to consistency: consensus can be a way to implement linearizability in a system</li>
 <li>different types of consensus based on their fault tolerance</li>
 </ul>
-<h3 id="modeling-distributed-systems"><a class="header" href="#modeling-distributed-systems">Modeling distributed systems</a></h3>
-<h4 id="failure-models"><a class="header" href="#failure-models">failure models</a></h4>
-<p>pick one of:
-crash-stop / crash-recovery / byzantine (data-intensive)
-crash / omission / byzantine (db internals)
-https://alvaro-videla.com/2013/12/failure-modes-in-distributed-systems.html
-http://cs.boisestate.edu/~amit/teaching/555/handouts/fault-tolerance-handout.pdf</p>
-<p>note: omissions includes network paritions as used in CAP</p>
-<h4 id="synchrony-models"><a class="header" href="#synchrony-models">synchrony models</a></h4>
-<p>synchronous, asynchronous, partially synchronous
-https://decentralizedthoughts.github.io/2019-06-01-2019-5-31-models/</p>
-<p>show practical examples of each synchrony model</p>
-<h5 id="flp-impossibility"><a class="header" href="#flp-impossibility">FLP impossibility</a></h5>
-<p>how it can be worked around in practice
-randomization, failure detectors (see chandra paper), partial synchrony
-provide examples and trade-offs</p>
-<h4 id="mapping-to-the-real-world"><a class="header" href="#mapping-to-the-real-world">Mapping to the real world</a></h4>
-<p>data-intensive apps has a good section about this</p>
-<p>models help not only to understand the terms in which algorithms are stated and where they are applicable, but also to reason about and make trade-off analysis in real systems</p>
-<h3 id="atomic-broadcast"><a class="header" href="#atomic-broadcast">Atomic broadcast</a></h3>
+<h2 id="atomic-broadcast"><a class="header" href="#atomic-broadcast">Atomic broadcast</a></h2>
 <ul>
 <li>definition</li>
 <li>it's the same problem as consensus but looked from a different angle</li>
 </ul>
 <p>this relation is well covered in db internals book and in the tendermint thesis</p>
-<h3 id="safety-and-liveness-properties"><a class="header" href="#safety-and-liveness-properties">Safety and liveness properties</a></h3>
+<h2 id="safety-and-liveness-properties"><a class="header" href="#safety-and-liveness-properties">Safety and liveness properties</a></h2>
 <p>here or somewhere else, explain how it maps to other classification of properties, eg.: agreement, integrity, validity, termination
 termination = fault-tolerance</p>
-<h3 id="replicated-state-machines"><a class="header" href="#replicated-state-machines">Replicated State-machines</a></h3>
-<p>most algorithms are described in terms of replicated state-machines, explain them here</p>
-<p>https://decentralizedthoughts.github.io/2019-10-15-consensus-for-state-machine-replication/
-schneider paper
-(maybe) lampson paper</p>
+<h2 id="streamlet"><a class="header" href="#streamlet">streamlet</a></h2>
+<p>https://decentralizedthoughts.github.io/2020-05-14-streamlet/
+https://eprint.iacr.org/2020/088
+http://elaineshi.com/docs/blockchain-book.pdf chapter 7</p>
+<p>this is a &quot;textbook&quot; protocol, good for pedagogical value so it's an obvious candidate to introduce some topics
+NOTE: this is a blockchain protocol and it's permissioned, so it kind of jumps ahead in the topics as currently organized in the book. nevertheless it seems like a better approach to start with this as the first consensus example before moving into classical stuff like paxos or raft.</p>
 <p>[CODE SAMPLES HERE]</p>
-<h3 id="conclusions-2"><a class="header" href="#conclusions-2">Conclusions</a></h3>
-<h3 id="references-2"><a class="header" href="#references-2">References</a></h3>
-<h2 id="4-crash-fault-tolerant-cft-consensus"><a class="header" href="#4-crash-fault-tolerant-cft-consensus">4. Crash fault-tolerant (CFT) consensus</a></h2>
+<h2 id="conclusions-4"><a class="header" href="#conclusions-4">Conclusions</a></h2>
+<h2 id="references-4"><a class="header" href="#references-4">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crash-fault-tolerant-cft-consensus"><a class="header" href="#crash-fault-tolerant-cft-consensus">Crash fault-tolerant (CFT) consensus</a></h1>
 <p>explain raft in detail, the rest briefly</p>
-<p>http://thesecretlivesofdata.com/raft/ -&gt; would be good to have more like this for other algorithms
-https://github.com/ongardie/raft.tla/blob/master/raft.tla
-raft paper</p>
+<p>historical notes</p>
 <ul>
 <li>paxos</li>
 <li>(maybe) Viewstamped Replication</li>
 <li>zab</li>
-<li>(maybe) chubby</li>
-<li>raft
+<li>chubby.
+paxos made live https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/paper2-1.pdf (chubby. covers issues when going to production)</li>
+</ul>
+<h2 id="raft"><a class="header" href="#raft">Raft</a></h2>
+<p>http://thesecretlivesofdata.com/raft/ -&gt; would be good to have more like this for other algorithms
+https://github.com/ongardie/raft.tla/blob/master/raft.tla
+raft paper</p>
 <ul>
 <li>leader election</li>
 <li>log replication</li>
 </ul>
-</li>
-</ul>
-<h3 id="conclusions-3"><a class="header" href="#conclusions-3">Conclusions</a></h3>
-<h3 id="references-3"><a class="header" href="#references-3">References</a></h3>
-<h2 id="5-byzantine-fault-tolerant-bft-consensus"><a class="header" href="#5-byzantine-fault-tolerant-bft-consensus">5. Byzantine fault-tolerant (BFT) consensus</a></h2>
+<p>[CODE SAMPLES]</p>
+<h2 id="conclusions-5"><a class="header" href="#conclusions-5">Conclusions</a></h2>
+<h2 id="references-5"><a class="header" href="#references-5">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="byzantine-fault-tolerant-bft-consensus"><a class="header" href="#byzantine-fault-tolerant-bft-consensus">Byzantine fault-tolerant (BFT) consensus</a></h1>
 <p>sources:
 real-world crypto ch. 12
 https://pontem.network/posts/aptosbft-all-you-need-to-know-about-the-bft-consensus-in-aptos</p>
-<h3 id="the-byzantine-generals-problem"><a class="header" href="#the-byzantine-generals-problem">The Byzantine generals problem</a></h3>
-<h3 id="practical-byzantine-fault-tolerance-pbft"><a class="header" href="#practical-byzantine-fault-tolerance-pbft">Practical Byzantine fault-tolerance PBFT</a></h3>
-<h3 id="bitcoin-and-permissionless-consensus"><a class="header" href="#bitcoin-and-permissionless-consensus">Bitcoin and permissionless consensus</a></h3>
+<h2 id="the-byzantine-generals-problem"><a class="header" href="#the-byzantine-generals-problem">The Byzantine generals problem</a></h2>
+<h2 id="practical-byzantine-fault-tolerance-pbft"><a class="header" href="#practical-byzantine-fault-tolerance-pbft">Practical Byzantine fault-tolerance PBFT</a></h2>
+<h2 id="conclusions-6"><a class="header" href="#conclusions-6">Conclusions</a></h2>
+<h2 id="references-6"><a class="header" href="#references-6">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bitcoin-and-permissionless-consensus"><a class="header" href="#bitcoin-and-permissionless-consensus">Bitcoin and permissionless consensus</a></h1>
+<p>sources:
+real-world crypto ch. 12
+https://pontem.network/posts/aptosbft-all-you-need-to-know-about-the-bft-consensus-in-aptos</p>
 <p>before bitcoin BFT was a theoretical problem and the solutions impractical, but a permissionless network required to assume arbitrary/malicious nodes.</p>
-<h3 id="proof-of-authority-proof-of-work-proof-of-stake"><a class="header" href="#proof-of-authority-proof-of-work-proof-of-stake">Proof of authority, proof of work, proof of stake</a></h3>
-<h3 id="conclusions-4"><a class="header" href="#conclusions-4">Conclusions</a></h3>
-<h3 id="references-4"><a class="header" href="#references-4">References</a></h3>
-<h2 id="6-proof-of-stake-consensus-protocols"><a class="header" href="#6-proof-of-stake-consensus-protocols">6. Proof of Stake consensus protocols</a></h2>
+<h2 id="proof-of-authority-proof-of-work-proof-of-stake"><a class="header" href="#proof-of-authority-proof-of-work-proof-of-stake">Proof of authority, proof of work, proof of stake</a></h2>
+<h2 id="conclusions-7"><a class="header" href="#conclusions-7">Conclusions</a></h2>
+<h2 id="references-7"><a class="header" href="#references-7">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="proof-of-stake-consensus"><a class="header" href="#proof-of-stake-consensus">Proof of Stake consensus</a></h1>
 <p>real-world crypto ch. 12</p>
-<h3 id="tendermint"><a class="header" href="#tendermint">Tendermint</a></h3>
-<h3 id="diem"><a class="header" href="#diem">Diem</a></h3>
+<h2 id="tendermint"><a class="header" href="#tendermint">Tendermint</a></h2>
+<p>[CODE SAMPLE]</p>
+<h2 id="diem"><a class="header" href="#diem">Diem</a></h2>
 <p>previously Libra, based on hotstuff
 (need to make differences with tendermint explicit, and if they are not big enough probably not worth getting into the details here, perhaps just mentioning it)</p>
-<h3 id="algorand"><a class="header" href="#algorand">Algorand?</a></h3>
-<p>Byzantine Agreement, Made Trivial</p>
-<h3 id="dags"><a class="header" href="#dags">DAGs</a></h3>
+<h2 id="algorand"><a class="header" href="#algorand">Algorand?</a></h2>
+<p>algorand paper
+Byzantine Agreement, Made Trivial</p>
+<h2 id="conclusions-8"><a class="header" href="#conclusions-8">Conclusions</a></h2>
+<h2 id="references-8"><a class="header" href="#references-8">References</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="directed-acyclic-graph-dag-consensus"><a class="header" href="#directed-acyclic-graph-dag-consensus">Directed acyclic graph (DAG) consensus</a></h1>
 <p>https://decentralizedthoughts.github.io/2022-06-28-DAG-meets-BFT/
-https://www.paradigm.xyz/2022/07/experiment-narwhal-bullshark-cosmos-stack</p>
-<h3 id="conclusions-5"><a class="header" href="#conclusions-5">Conclusions</a></h3>
-<h3 id="references-5"><a class="header" href="#references-5">References</a></h3>
-<h2 id="appendix-summary-of-consensus-algorithms"><a class="header" href="#appendix-summary-of-consensus-algorithms">Appendix: summary of consensus algorithms</a></h2>
+https://www.paradigm.xyz/2022/07/experiment-narwhal-bullshark-cosmos-stack
+<a href="https://arxiv.org/pdf/2201.05677.pdf">Bullshark: DAG BFT Protocols Made Practical</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendix-summary-of-algorithms"><a class="header" href="#appendix-summary-of-algorithms">Appendix: Summary of algorithms</a></h1>
 <p>make a table with each algorithm: synchrony and failure models it assumes, adversary threshold, performance, code complexity</p>
-<h2 id="appendix-tla"><a class="header" href="#appendix-tla">Appendix: TLA?</a></h2>
-<h1 id="notestodo"><a class="header" href="#notestodo">Notes/TODO</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="referencesnotestodo"><a class="header" href="#referencesnotestodo">References/Notes/TODO</a></h1>
 <ul>
-<li>review: <a href="https://groups.csail.mit.edu/tds/papers/Lynch/jacm88.pdf">Consensus in the Presence of Partial Synchrony</a>  (defines failure and synchrony models, is used by modern BFT)</li>
-<li><a href="https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf">the tendermint thesis</a> does a long introduction and comparison to other protocols, can be used as guide for this</li>
-<li>the <a href="https://www.web.stanford.edu/%7Eouster/cgi-bin/papers/OngaroPhD.pdf">raft thesis</a> is similar</li>
-<li><a href="https://www.cs.utexas.edu/%7Elorenzo/corsi/cs380d/papers/p225-chandra.pdf">Unreliable Failure Detectors for Reliable Distributed Systems</a></li>
-</ul>
-<h1 id="references-6"><a class="header" href="#references-6">references</a></h1>
-<ul>
-<li>https://pontem.network/posts/aptosbft-all-you-need-to-know-about-the-bft-consensus-in-aptos</li>
-<li>https://dl.acm.org/doi/10.1145/3293611.3331591</li>
-<li><a href="https://arxiv.org/pdf/2201.05677.pdf">Bullshark: DAG BFT Protocols Made Practical</a></li>
+<li>
+<p>https://decentralizedthoughts.github.io/start-here/ has a good overview of the different topics with links to posts that elaborate on them</p>
+</li>
+<li>
+<p><a href="https://knowen-production.s3.amazonaws.com/uploads/attachment/file/1814/Buchman_Ethan_201606_Msater%2Bthesis.pdf">the tendermint thesis</a> does a long introduction and comparison to other protocols, can be used as guide for this</p>
+</li>
+<li>
+<p>the <a href="https://www.web.stanford.edu/%7Eouster/cgi-bin/papers/OngaroPhD.pdf">raft thesis</a> is similar</p>
+</li>
+<li>
+<p>https://martinfowler.com/articles/patterns-of-distributed-systems/</p>
+</li>
+<li>
+<p>http://elaineshi.com/docs/blockchain-book.pdf</p>
+</li>
+<li>
+<p>https://heidihoward.github.io/distributed-consensus-reading-list/</p>
+</li>
 </ul>
 
                     </main>

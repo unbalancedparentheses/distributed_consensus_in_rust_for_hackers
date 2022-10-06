@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - Distributed Consensus in Rust for Hackers</title>
-        <base href="/">
+        <title>Byzantine fault-tolerant (BFT) consensus - Distributed Consensus in Rust for Hackers</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -78,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="preface.html">Preface</a></li><li class="chapter-item expanded "><a href="distsys.html"><strong aria-hidden="true">1.</strong> A tour de force in distributed systems</a></li><li class="chapter-item expanded "><a href="failures.html"><strong aria-hidden="true">2.</strong> Living with failures</a></li><li class="chapter-item expanded "><a href="replication.html"><strong aria-hidden="true">3.</strong> Replication</a></li><li class="chapter-item expanded "><a href="consistency.html"><strong aria-hidden="true">4.</strong> Consistency</a></li><li class="chapter-item expanded "><a href="modeling.html"><strong aria-hidden="true">5.</strong> Modeling distributed systems</a></li><li class="chapter-item expanded "><a href="machines.html"><strong aria-hidden="true">6.</strong> Replicated state machines</a></li><li class="chapter-item expanded "><a href="consensus.html"><strong aria-hidden="true">7.</strong> Introduction to Consensus</a></li><li class="chapter-item expanded "><a href="cft.html"><strong aria-hidden="true">8.</strong> Crash fault-tolerant (CFT) consensus</a></li><li class="chapter-item expanded "><a href="bft.html"><strong aria-hidden="true">9.</strong> Byzantine fault-tolerant (BFT) consensus</a></li><li class="chapter-item expanded "><a href="bitcoin.html"><strong aria-hidden="true">10.</strong> Bitcoin and permissionless consensus</a></li><li class="chapter-item expanded "><a href="pos.html"><strong aria-hidden="true">11.</strong> Proof of Stake consensus</a></li><li class="chapter-item expanded "><a href="dag.html"><strong aria-hidden="true">12.</strong> Directed acyclic graph (DAG) consensus</a></li><li class="chapter-item expanded affix "><a href="algorithms.html">Appendix: Summary of algorithms</a></li><li class="chapter-item expanded affix "><div>Appendix: TLA?</div></li><li class="chapter-item expanded affix "><a href="references.html">References and notes</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="preface.html">Preface</a></li><li class="chapter-item expanded "><a href="distsys.html"><strong aria-hidden="true">1.</strong> A tour de force in distributed systems</a></li><li class="chapter-item expanded "><a href="failures.html"><strong aria-hidden="true">2.</strong> Living with failures</a></li><li class="chapter-item expanded "><a href="replication.html"><strong aria-hidden="true">3.</strong> Replication</a></li><li class="chapter-item expanded "><a href="consistency.html"><strong aria-hidden="true">4.</strong> Consistency</a></li><li class="chapter-item expanded "><a href="modeling.html"><strong aria-hidden="true">5.</strong> Modeling distributed systems</a></li><li class="chapter-item expanded "><a href="machines.html"><strong aria-hidden="true">6.</strong> Replicated state machines</a></li><li class="chapter-item expanded "><a href="consensus.html"><strong aria-hidden="true">7.</strong> Introduction to Consensus</a></li><li class="chapter-item expanded "><a href="cft.html"><strong aria-hidden="true">8.</strong> Crash fault-tolerant (CFT) consensus</a></li><li class="chapter-item expanded "><a href="bft.html" class="active"><strong aria-hidden="true">9.</strong> Byzantine fault-tolerant (BFT) consensus</a></li><li class="chapter-item expanded "><a href="bitcoin.html"><strong aria-hidden="true">10.</strong> Bitcoin and permissionless consensus</a></li><li class="chapter-item expanded "><a href="pos.html"><strong aria-hidden="true">11.</strong> Proof of Stake consensus</a></li><li class="chapter-item expanded "><a href="dag.html"><strong aria-hidden="true">12.</strong> Directed acyclic graph (DAG) consensus</a></li><li class="chapter-item expanded affix "><a href="algorithms.html">Appendix: Summary of algorithms</a></li><li class="chapter-item expanded affix "><div>Appendix: TLA?</div></li><li class="chapter-item expanded affix "><a href="references.html">References and notes</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,19 +136,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="byzantine-fault-tolerant-bft-consensus"><a class="header" href="#byzantine-fault-tolerant-bft-consensus">Byzantine fault-tolerant (BFT) consensus</a></h1>
+<p>sources:
+real-world crypto ch. 12
+https://pontem.network/posts/aptosbft-all-you-need-to-know-about-the-bft-consensus-in-aptos</p>
+<h2 id="the-byzantine-generals-problem"><a class="header" href="#the-byzantine-generals-problem">The Byzantine generals problem</a></h2>
+<h2 id="practical-byzantine-fault-tolerance-pbft"><a class="header" href="#practical-byzantine-fault-tolerance-pbft">Practical Byzantine fault-tolerance PBFT</a></h2>
+<h2 id="conclusions"><a class="header" href="#conclusions">Conclusions</a></h2>
+<h2 id="references"><a class="header" href="#references">References</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="cft.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="bitcoin.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="cft.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="bitcoin.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
