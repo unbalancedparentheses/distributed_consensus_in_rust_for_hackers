@@ -7,3 +7,7 @@
 - https://martinfowler.com/articles/patterns-of-distributed-systems/
 - http://elaineshi.com/docs/blockchain-book.pdf
 - https://heidihoward.github.io/distributed-consensus-reading-list/
+
+
+- [How to call a C function from Rust 🦀☎️](https://github.com/vanjacosic/rust-ffi-to-c)
+- [Implementing truly safe semaphores in Rust](https://neosmart.net/blog/2022/implementing-truly-safe-semaphores-in-rust/)
